@@ -9,12 +9,19 @@ import { Observable } from '../../../node_modules/rxjs';
 export class ContactService {
   private url: string = 'https://jsonplaceholder.typicode.com/users';
 
+  contact: Observable<IContact>;
+  contacts: Observable<IContact[]>;
+
   constructor(private _http: HttpClient) {
-    console.log(`Service ContactServicie init`);
+    this.getContacts();
   }
 
-  getContacts(): Observable<IContact[]> {
-    return this._http.get<IContact[]>(this.url);
+  getContacts() {
+    this.contacts = this._http.get<IContact[]>(this.url);
+  }
+
+  getContact(id:number){
+     this.contact= this._http.get<IContact>(this.url + '/id/'+ id);
   }
 
 

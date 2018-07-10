@@ -1,3 +1,6 @@
-<p>
-  details-contact works!
-</p>
+<div *ngIf="contact">
+  Selecciona un contacto
+</div>
+<div *ngIf="contact">
+  {{contact.name | async}}
+</div>
